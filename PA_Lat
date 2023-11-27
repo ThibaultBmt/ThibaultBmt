@@ -1,1 +1,17 @@
+from ivy.std_api import *
+import time
 
+def on_msg(agent, *larg):
+    print("Msg with arg %s received" % larg[0])
+
+def null_cb(*a):
+    pass
+
+IvyInit("IvyGetMsgApp", "Ready", 0, null_cb, null_cb)
+IvyStart("127.255.255.255:2010")
+
+time.sleep(1.0)
+IvySendMsg("mot1=Bonjour mot2=Ivy")
+IvyStop()
+#IvyBindMsg(on_msg, "^PythonExample=(S+)")
+#IvyMainLoop()
